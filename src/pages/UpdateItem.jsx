@@ -13,7 +13,9 @@ const UpdateItem = () => {
         const { item, type, price, quantity } = updateItemData;
         try 
         {
-          const response = await axios.post("http://localhost:3000/update-items", {item, type, price, quantity,});
+          const response = await axios.post("http://localhost:3000/update-items", 
+            {item:item.toLowerCase().trim(), 
+            type, price, quantity,});
           setMsg(response.data);
         } 
         catch (error) 
@@ -29,8 +31,14 @@ const UpdateItem = () => {
             <input type="text" id="item" value={updateItemData.item} onChange={handleChange} required />
             <br />
             <br />
-            <label htmlFor="type">Item type:</label>
-            <input type="text" id="type" value={updateItemData.type} onChange={handleChange} required />
+            <select id="type" value={updateItemData.type} onChange={handleChange} >
+                <option value="" disabled>
+                    Select an item type
+                </option>
+                <option value="fruit">Fruit</option>
+                <option value="vegetable">Vegetable</option>
+                <option value="dairy">Dairy</option>
+            </select>
             <br />
             <br />
             <label htmlFor="quantity">Available amount:</label>

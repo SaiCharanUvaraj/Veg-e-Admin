@@ -15,7 +15,7 @@ const DeleteItem = () => {
         const { item } = deleteItemData;
         try 
         {
-            const response = await axios.post("http://localhost:3000/delete-items", {item});
+            const response = await axios.post("http://localhost:3000/delete-items", {item:item.toLowerCase().trim()});
             setMsg(response.data);
         }
         catch (error)
