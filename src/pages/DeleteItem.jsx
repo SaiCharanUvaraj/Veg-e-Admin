@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
+import origin from '../Origin'
+
 const DeleteItem = () => {
     const [deleteItemData, setDeleteItemData] = useState({
         item: "",
@@ -15,7 +17,7 @@ const DeleteItem = () => {
         const { item } = deleteItemData;
         try 
         {
-            const response = await axios.post("http://localhost:3000/delete-items", {item:item.toLowerCase().trim()});
+            const response = await axios.post(`${origin}/delete-items`, {item:item.toLowerCase().trim()});
             setMsg(response.data);
         }
         catch (error)

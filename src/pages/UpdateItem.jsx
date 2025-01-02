@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
 import axios from 'axios';
+import origin from '../Origin';
+
 const UpdateItem = () => {
     const [updateItemData, setUpdateItemData] = useState({item: "", type: "", price: "", quantity: ""});
     const [msg,setMsg]=useState("");
@@ -13,7 +15,7 @@ const UpdateItem = () => {
         const { item, type, price, quantity } = updateItemData;
         try 
         {
-          const response = await axios.post("http://localhost:3000/update-items", 
+          const response = await axios.post(`${origin}/update-items`, 
             {item:item.toLowerCase().trim(), 
             type, price, quantity,});
           setMsg(response.data);
